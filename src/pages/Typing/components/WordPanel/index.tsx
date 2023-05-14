@@ -3,6 +3,7 @@ import Phonetic from './components/Phonetic'
 import Translation from './components/Translation'
 import { default as WordComponent } from './components/Word'
 import { phoneticConfigAtom } from '@/store'
+import { typingRepeatNumAtom } from '@/store'
 import { useAtomValue } from 'jotai'
 import { useCallback, useContext, useState } from 'react'
 
@@ -10,7 +11,9 @@ export default function WordPanel() {
   // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
   const { state, dispatch } = useContext(TypingContext)!
   const phoneticConfig = useAtomValue(phoneticConfigAtom)
+  const typingRepeatNum = useAtomValue(typingRepeatNumAtom)
   const [wordComponentKey, setWordComponentKey] = useState(0)
+  const [typingNum, setTyingNum] = useState(0)
 
   const currentWord = state.chapterData.words[state.chapterData.index]
 
@@ -21,17 +24,25 @@ export default function WordPanel() {
   const onFinish = useCallback(() => {
     if (state.chapterData.index < state.chapterData.words.length - 1 || state.isLoopSingleWord) {
       // 用户完成当前单词
-      if (state.isLoopSingleWord) {
+      if (typingRepeatNum === -1) {
         dispatch({ type: TypingStateActionType.LOOP_CURRENT_WORD })
         reloadCurrentWordComponent()
       } else {
-        dispatch({ type: TypingStateActionType.NEXT_WORD })
+        if (typingNum < typingRepeatNum) {
+          dispatch({ type: TypingStateActionType.LOOP_CURRENT_WORD })
+          reloadCurrentWordComponent()
+          setTyingNum(typingNum + 1)
+        } else {
+          // reset TyingNum
+          setTyingNum(0)
+          dispatch({ type: TypingStateActionType.NEXT_WORD })
+        }
       }
     } else {
       // 用户完成当前章节
       dispatch({ type: TypingStateActionType.FINISH_CHAPTER })
     }
-  }, [state, dispatch, reloadCurrentWordComponent])
+  }, [state, dispatch, reloadCurrentWordComponent, typingRepeatNum, typingNum])
 
   return (
     <div className="flex flex-col items-center">
