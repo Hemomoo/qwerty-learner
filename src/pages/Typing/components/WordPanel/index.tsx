@@ -16,7 +16,7 @@ export default function WordPanel() {
   const isShowPrevAndNextWord = useAtomValue(isShowPrevAndNextWordAtom)
   const typingRepeatNum = useAtomValue(typingRepeatNumAtom)
   const [wordComponentKey, setWordComponentKey] = useState(0)
-  const [typingNum, setTyingNum] = useState(0)
+  const [typingNum, setTyingNum] = useState(1)
 
   const currentWord = state.chapterData.words[state.chapterData.index]
 
@@ -25,19 +25,19 @@ export default function WordPanel() {
   }, [])
 
   const onFinish = useCallback(() => {
-    if (state.chapterData.index < state.chapterData.words.length - 1 || state.isLoopSingleWord) {
-      // 用户完成当前单词
+    if (state.chapterData.index < state.chapterData.words.length - 1) {
+      // -1 Wireless looping
       if (typingRepeatNum === -1) {
         dispatch({ type: TypingStateActionType.LOOP_CURRENT_WORD })
         reloadCurrentWordComponent()
       } else {
         if (typingNum < typingRepeatNum) {
           dispatch({ type: TypingStateActionType.LOOP_CURRENT_WORD })
-          reloadCurrentWordComponent()
           setTyingNum(typingNum + 1)
+          reloadCurrentWordComponent()
         } else {
           // reset TyingNum
-          setTyingNum(0)
+          setTyingNum(1)
           dispatch({ type: TypingStateActionType.NEXT_WORD })
         }
       }
