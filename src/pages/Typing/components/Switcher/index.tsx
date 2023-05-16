@@ -1,6 +1,5 @@
 import { TypingContext, TypingStateActionType } from '../../store'
 import HandPositionIllustration from '../HandPositionIllustration'
-import RepeatNumSelect from '../RepeatNumSelect'
 import Setting from '../Setting'
 import SoundSwitcher from '../SoundSwitcher'
 import Tooltip from '@/components/Tooltip'
@@ -84,8 +83,8 @@ export default function Switcher() {
         <SoundSwitcher />
       </Tooltip>
 
-      <Tooltip className="h-7 w-7" content="开关单个单词循环（Ctrl + L）">
-        {/* <button
+      {/* <Tooltip className="h-7 w-7" content="开关单个单词循环（Ctrl + L）">
+        <button
           className={`p-[2px] ${state?.isLoopSingleWord ? 'text-indigo-500' : 'text-gray-500'} text-lg focus:outline-none`}
           type="button"
           onClick={(e) => {
@@ -95,9 +94,8 @@ export default function Switcher() {
           aria-label="开关单个单词循环（Ctrl + L）"
         >
           {state?.isLoopSingleWord ? <IconRepeatOnce /> : <IconRepeatOff />}
-        </button> */}
-        <RepeatNumSelect></RepeatNumSelect>
-      </Tooltip>
+        </button>
+      </Tooltip> */}
       <Tooltip className="h-7 w-7" content="开关英语显示（Ctrl + V）">
         <button
           className={`p-[2px] ${state?.isWordVisible ? 'text-indigo-500' : 'text-gray-500'} text-lg focus:outline-none`}
