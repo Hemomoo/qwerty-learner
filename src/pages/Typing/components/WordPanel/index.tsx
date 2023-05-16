@@ -4,8 +4,7 @@ import Progress from '../Progress'
 import Phonetic from './components/Phonetic'
 import Translation from './components/Translation'
 import { default as WordComponent } from './components/Word'
-
-import { isShowPrevAndNextWordAtom, phoneticConfigAtom,typingRepeatNumAtom } from '@/store'
+import { isShowPrevAndNextWordAtom, phoneticConfigAtom, typingRepeatNumAtom } from '@/store'
 import { useAtomValue } from 'jotai'
 import { useCallback, useContext, useState } from 'react'
 

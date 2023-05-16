@@ -1,5 +1,12 @@
 import styles from './index.module.css'
-import { isIgnoreCaseAtom, isShowAnswerOnHoverAtom, isShowPrevAndNextWordAtom, isTextSelectableAtom, randomConfigAtom,typingRepeatNumAtom } from '@/store'
+import {
+  isIgnoreCaseAtom,
+  isShowAnswerOnHoverAtom,
+  isShowPrevAndNextWordAtom,
+  isTextSelectableAtom,
+  randomConfigAtom,
+  typingRepeatNumAtom,
+} from '@/store'
 import { Switch } from '@headlessui/react'
 import * as ToggleGroup from '@radix-ui/react-toggle-group'
 import { useAtom } from 'jotai'
