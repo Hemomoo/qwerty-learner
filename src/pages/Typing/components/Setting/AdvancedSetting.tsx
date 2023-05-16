@@ -1,6 +1,12 @@
 import styles from './index.module.css'
-import { isIgnoreCaseAtom, isTextSelectableAtom, randomConfigAtom, isShowAnswerOnHoverAtom } from '@/store'
-import { typingRepeatNumAtom } from '@/store'
+import {
+  isIgnoreCaseAtom,
+  isShowAnswerOnHoverAtom,
+  isShowPrevAndNextWordAtom,
+  isTextSelectableAtom,
+  randomConfigAtom,
+  typingRepeatNumAtom,
+} from '@/store'
 import { Switch } from '@headlessui/react'
 import * as ToggleGroup from '@radix-ui/react-toggle-group'
 import { useAtom } from 'jotai'
@@ -8,6 +14,7 @@ import { useCallback } from 'react'
 
 export default function AdvancedSetting() {
   const [randomConfig, setRandomConfig] = useAtom(randomConfigAtom)
+  const [isShowPrevAndNextWord, setIsShowPrevAndNextWord] = useAtom(isShowPrevAndNextWordAtom)
   const [isIgnoreCase, setIsIgnoreCase] = useAtom(isIgnoreCaseAtom)
   const [isTextSelectable, setIsTextSelectable] = useAtom(isTextSelectableAtom)
   const [isShowAnswerOnHover, setIsShowAnswerOnHover] = useAtom(isShowAnswerOnHoverAtom)
@@ -50,6 +57,13 @@ export default function AdvancedSetting() {
     [setRandomConfig],
   )
 
+  const onToggleLastAndNextWord = useCallback(
+    (checked: boolean) => {
+      setIsShowPrevAndNextWord(checked)
+    },
+    [setIsShowPrevAndNextWord],
+  )
+
   const onToggleIgnoreCase = useCallback(
     (checked: boolean) => {
       setIsIgnoreCase(checked)
@@ -81,6 +95,18 @@ export default function AdvancedSetting() {
           </Switch>
           <span className="text-right text-xs font-normal leading-tight text-gray-600">{`随机已${
             randomConfig.isOpen ? '开启' : '关闭'
+          }`}</span>
+        </div>
+      </div>
+      <div className={styles.section}>
+        <span className={styles.sectionLabel}>练习时展示上一个/下一个单词</span>
+        <span className={styles.sectionDescription}>开启后，练习中会在上方展示上一个/下一个单词</span>
+        <div className={styles.switchBlock}>
+          <Switch checked={isShowPrevAndNextWord} onChange={onToggleLastAndNextWord} className="switch-root">
+            <span aria-hidden="true" className="switch-thumb" />
+          </Switch>
+          <span className="text-right text-xs font-normal leading-tight text-gray-600">{`展示单词已${
+            isShowPrevAndNextWord ? '开启' : '关闭'
           }`}</span>
         </div>
       </div>
