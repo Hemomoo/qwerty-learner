@@ -1,12 +1,13 @@
 import { pronunciationConfigAtom } from '@/store'
-import { PronunciationType } from '@/typings'
+import type { PronunciationType } from '@/typings'
 import { addHowlListener } from '@/utils'
 import noop from '@/utils/noop'
-import { Howl } from 'howler'
+import romajiToHiragana from '@/utils/romajiToHiragana'
+import type { Howl } from 'howler'
 import { useAtomValue } from 'jotai'
 import { useEffect, useMemo, useState } from 'react'
 import useSound from 'use-sound'
-import { HookOptions } from 'use-sound/dist/types'
+import type { HookOptions } from 'use-sound/dist/types'
 
 const pronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 function generateWordSoundSrc(word: string, pronunciation: Exclude<PronunciationType, false>) {
@@ -16,7 +17,7 @@ function generateWordSoundSrc(word: string, pronunciation: Exclude<Pronunciation
     case 'us':
       return `${pronunciationApi}${word}&type=2`
     case 'romaji':
-      return `${pronunciationApi}${word}&le=jap`
+      return `${pronunciationApi}${romajiToHiragana(word)}&le=jap`
     case 'zh':
       return `${pronunciationApi}${word}&le=zh`
     case 'ja':
