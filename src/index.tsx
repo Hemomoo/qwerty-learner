@@ -1,4 +1,5 @@
 import './index.css'
+import Chart from './pages/Chart'
 // import GalleryPage from './pages/Gallery'
 import GalleryPage from './pages/Gallery-N'
 import TypingPage from './pages/Typing'
@@ -34,6 +35,7 @@ function Root() {
           <Route index element={<TypingPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/*" element={<Navigate to="/" />} />
+          <Route path="/chart" element={<Chart />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
