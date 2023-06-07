@@ -1,3 +1,4 @@
+import { useGetWordRecords } from '@/utils/db/index'
 import { Chart } from '@antv/g2'
 import { useEffect, useRef } from 'react'
 
@@ -5,20 +6,33 @@ export default function G2Chart<T>(data: T) {
   const container = useRef<HTMLInputElement>(null)
   const chart = useRef<any>(null)
 
+  const wordRecords = useGetWordRecords()
+  console.log('wordRecords: ', wordRecords)
+
   useEffect(() => {
     if (!chart.current) {
       chart.current = renderBarChart(container.current)
     }
   }, [])
 
-  function renderBarChart(container: any) {
+  function renderBarChart(container: HTMLInputElement) {
     const chart = new Chart({
       container,
+      height: 300,
       theme: 'classic',
     })
 
+    interface DataItem {
+      date: string
+      precipitation: number
+      temp_max: number
+      temp_min: number
+      wind: number
+      weather: string
+    }
+
     // 准备数据
-    const data = [
+    const data: Array<DataItem> = [
       {
         date: '2012-01-01T00:00:00.000Z',
         precipitation: 0,
@@ -11714,12 +11728,15 @@ export default function G2Chart<T>(data: T) {
       .cell()
       .data(data)
       .transform({ type: 'group', color: 'max' })
-      .encode('x', (d) => new Date(d.date).getUTCDate())
-      .encode('y', (d) => new Date(d.date).getUTCMonth())
+      .encode('x', (d: DataItem) => new Date(d.date).getUTCDate())
+      .encode('y', (d: DataItem) => new Date(d.date).getUTCMonth() + 1)
       .encode('color', 'temp_max')
-      .style('inset', 1)
-      .scale('color', { palette: 'gnBu' })
-      .animate('enter', { type: 'fadeIn' })
+      .scale('color', {
+        type: 'sequential',
+        palette: 'blues',
+      })
+      .axis('y', { title: '月' })
+      .axis('x', { title: '天' })
 
     // 渲染可视化
     chart.render()

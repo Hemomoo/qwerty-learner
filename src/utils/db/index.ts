@@ -5,6 +5,7 @@ import { TypingContext, TypingStateActionType } from '@/pages/Typing/store'
 import { currentChapterAtom, currentDictIdAtom } from '@/store'
 import type { Table } from 'dexie'
 import Dexie from 'dexie'
+import { useLiveQuery } from 'dexie-react-hooks'
 import { useAtomValue } from 'jotai'
 import { useCallback, useContext } from 'react'
 
@@ -102,4 +103,11 @@ export function useSaveWordRecord() {
   )
 
   return saveWordRecord
+}
+
+export function useGetWordRecords() {
+  const wordRecords = useLiveQuery(() => db.wordRecords.toArray(), [])
+  // const wordRecordCount = useLiveQuery(() => db.wordRecords.count());
+  console.log('wordRecords: ', wordRecords)
+  return wordRecords ? wordRecords : null
 }
