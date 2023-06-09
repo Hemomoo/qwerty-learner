@@ -105,9 +105,49 @@ export function useSaveWordRecord() {
   return saveWordRecord
 }
 
+export type WordDayTyping = {
+  timeStamp: string
+  monthDay: string
+  count: number
+}
+
+function getMonthDay(timeStamp: string) {
+  const date = new Date(Number(timeStamp) * 1000)
+  const month = date.getMonth() + 1 // 月份从 0 开始，需要加1
+  const day = date.getDate()
+  return `${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+}
+
 export function useGetWordRecords() {
-  const wordRecords = useLiveQuery(() => db.wordRecords.toArray(), [])
-  // const wordRecordCount = useLiveQuery(() => db.wordRecords.count());
+  const wordRecords = useLiveQuery(() => {
+    return db.wordRecords.toArray().then((res) => {
+      const data = res.map((item) => {
+        return {
+          ...item,
+          timeStamp: String(item.timeStamp).replace(/\d{4}$/, '0000'),
+        }
+      })
+      const accumulatorArr: WordDayTyping[] = []
+      data.forEach((current) => {
+        const index = accumulatorArr.findIndex((accumulatorItem: WordDayTyping) => {
+          return accumulatorItem.timeStamp === current.timeStamp
+        })
+        if (index === -1) {
+          accumulatorArr.push({
+            timeStamp: current.timeStamp,
+            monthDay: getMonthDay(current.timeStamp),
+            count: 0,
+          })
+        } else {
+          accumulatorArr[index] = {
+            ...accumulatorArr[index],
+            count: accumulatorArr[index].count + 1,
+          }
+        }
+      })
+      return accumulatorArr
+    })
+  }, [])
   console.log('wordRecords: ', wordRecords)
   return wordRecords ? wordRecords : null
 }
