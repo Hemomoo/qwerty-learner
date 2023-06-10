@@ -106,7 +106,7 @@ export function useSaveWordRecord() {
 }
 
 export type WordDayTyping = {
-  timeStamp: string
+  timeStamp?: string
   monthDay: string
   count: number
 }
