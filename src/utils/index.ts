@@ -19,6 +19,21 @@ const bannedKeys = [
   'Hyper',
   'Super',
   'OS',
+  // Up, down, left and right keys
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  // volume keys
+  'AudioVolumeUp',
+  'AudioVolumeDown',
+  'AudioVolumeMute',
+  // special keys
+  'End',
+  'PageDown',
+  'PageUp',
+  'Clear',
+  'Home',
 ]
 
 export const isLegal = (key: string): boolean => {
@@ -44,6 +59,10 @@ export const IsDesktop = () => {
   }
   return flag
 }
+
+export const IS_MAC_OS = navigator.userAgent.indexOf('Macintosh') !== -1
+
+export const CTRL = IS_MAC_OS ? 'Control' : 'Ctrl'
 
 export function addHowlListener(howl: Howl, ...args: Parameters<Howl['on']>) {
   howl.on(...args)

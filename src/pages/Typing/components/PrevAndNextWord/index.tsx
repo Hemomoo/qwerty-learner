@@ -1,9 +1,9 @@
 import { TypingContext, TypingStateActionType } from '../../store'
 import Tooltip from '@/components/Tooltip'
 import { wordDictationConfigAtom } from '@/store'
+import { CTRL } from '@/utils'
 import { useAtomValue } from 'jotai'
 import { useCallback, useContext, useMemo } from 'react'
-import { useHotkeys } from 'react-hotkeys-hook'
 import IconPrev from '~icons/tabler/arrow-narrow-left'
 import IconNext from '~icons/tabler/arrow-narrow-right'
 
@@ -14,7 +14,7 @@ export default function PrevAndNextWord({ type }: LastAndNextWordProps) {
   const wordDictationConfig = useAtomValue(wordDictationConfigAtom)
   const newIndex = useMemo(() => state.chapterData.index + (type === 'prev' ? -1 : 1), [state.chapterData.index, type])
   const word = state.chapterData.words[newIndex]
-  const shortCutKey = useMemo(() => (type === 'prev' ? 'Ctrl + Shift + ArrowLeft' : 'Ctrl + Shift + ArrowRight'), [type])
+  const shortCutKey = useMemo(() => (type === 'prev' ? `${CTRL} + Shift + ArrowLeft` : `${CTRL} + Shift + ArrowRight`), [type])
 
   const onClickWord = useCallback(() => {
     if (!word) return
@@ -22,15 +22,6 @@ export default function PrevAndNextWord({ type }: LastAndNextWordProps) {
     if (type === 'prev') dispatch({ type: TypingStateActionType.SKIP_2_WORD_INDEX, newIndex })
     if (type === 'next') dispatch({ type: TypingStateActionType.SKIP_2_WORD_INDEX, newIndex })
   }, [type, dispatch, newIndex, word])
-
-  useHotkeys(
-    shortCutKey,
-    (e) => {
-      e.preventDefault()
-      onClickWord()
-    },
-    { preventDefault: true },
-  )
 
   const headWord = useMemo(() => {
     if (!word) return ''
