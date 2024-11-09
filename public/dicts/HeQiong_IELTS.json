@@ -5364,10 +5364,10 @@
     "ukphone": "ˈbeɪbi"
   },
   {
-    "name": "人",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
+    "name": "person",
+    "trans": ["人"],
+    "usphone": "ˈpɜːrs(ə)n",
+    "ukphone": "ˈpɜːs(ə)n"
   },
   {
     "name": "extreme",
@@ -5626,12 +5626,6 @@
     "trans": ["资深的；年长的；高级的；大四学"],
     "usphone": "ˈsiːniər",
     "ukphone": "ˈsiːniə(r)"
-  },
-  {
-    "name": "生",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
   },
   {
     "name": "grammar",
@@ -6696,12 +6690,6 @@
     "ukphone": "ˈdʒuːniə(r)"
   },
   {
-    "name": "辈；三年级生",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
-  },
-  {
     "name": "colleague",
     "trans": ["同事"],
     "usphone": "ˈkɑːliːɡ",
@@ -6784,12 +6772,6 @@
     "trans": ["住处；和解；适应；膳"],
     "usphone": "əˌkɑːməˈdeɪʃ(ə)n",
     "ukphone": "əˌkɒməˈdeɪʃ(ə)n"
-  },
-  {
-    "name": "宿",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
   },
   {
     "name": "alert",
@@ -6936,12 +6918,6 @@
     "ukphone": "ˈɔːdə(r)"
   },
   {
-    "name": "整；点餐",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
-  },
-  {
     "name": "treatment",
     "trans": ["治疗；处理"],
     "usphone": "ˈtriːtmənt",
@@ -6988,12 +6964,6 @@
     "trans": ["信用；贷款；荣誉；赞扬；学分；归"],
     "usphone": "ˈkredɪt",
     "ukphone": "ˈkredɪt"
-  },
-  {
-    "name": "功于",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
   },
   {
     "name": "triple",
@@ -8628,12 +8598,6 @@
     "ukphone": "rɪˈɡɑːd"
   },
   {
-    "name": "致意；和…有关",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
-  },
-  {
     "name": "legroom",
     "trans": ["伸腿空间"],
     "usphone": "ˈleɡruːmˌˈleɡrʊm",
@@ -9288,10 +9252,10 @@
     "ukphone": "ɪnˈkɔːpəreɪt"
   },
   {
-    "name": "司组织的",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
+    "name": "organization",
+    "trans": ["组织"],
+    "usphone": "ˌɔːrɡənəˈzeɪʃ(ə)n",
+    "ukphone": "ˌɔːɡənaɪˈzeɪʃn"
   },
   {
     "name": "mention",
@@ -9316,12 +9280,6 @@
     "trans": ["（穿越沙漠的）旅行队；商队；大"],
     "usphone": "ˈkærəvæn",
     "ukphone": "ˈkærəvæn"
-  },
-  {
-    "name": "篷车；宿营车",
-    "trans": [""],
-    "usphone": "NoPhoneticSymbolUS",
-    "ukphone": "NoPhoneticSymbolUK"
   },
   {
     "name": "retrain",
@@ -11424,8 +11382,8 @@
     "ukphone": "rɪˈspɒndənt"
   },
   {
-    "name": "odor/",
-    "trans": ["odour，气味；名声"],
+    "name": "odor",
+    "trans": ["气味；名声"],
     "usphone": "ˈoʊdər",
     "ukphone": "ˈəʊdə(r)"
   },

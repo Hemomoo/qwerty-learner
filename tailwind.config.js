@@ -1,8 +1,26 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class'],
   content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
-  darkMode: 'class',
   theme: {
     extend: {
+      colors: {
+        primary: '#6366f1',
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
       transitionDuration: {
         0: '0ms',
       },
@@ -55,23 +73,5 @@ module.exports = {
       backgroundOpacity: ['dark'],
     },
   },
-  plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/forms'), require('daisyui')],
-  daisyui: {
-    themes: [
-      {
-        mytheme: {
-          primary: '#6366f1',
-          secondary: '#7dd3fc',
-          accent: '#cc8316',
-          neutral: '#272735',
-          'base-100': '#f0eff1',
-          info: '#f3f4f6',
-          success: '#6fe7ab',
-          warning: '#d6920a',
-          error: '#f43f5e',
-        },
-      },
-      'dark',
-    ],
-  },
+  plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/forms'), require('tailwindcss-animate')],
 }
